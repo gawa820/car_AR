@@ -992,3 +992,336 @@ a-scene {
   font-size: clamp(11px, 2.7vw, 15px);
   line-height: 1.52;
 }
+
+/* ---------- v4 UI copy / header adjustments ---------- */
+.top-bar {
+  align-items: flex-start;
+  gap: 12px;
+}
+
+.progress-wrap {
+  flex: 1;
+  min-width: 0;
+  padding-top: 2px;
+}
+
+.title {
+  display: none !important;
+}
+
+#progress {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 96px;
+  padding: 10px 14px;
+  margin-top: 0;
+  border-radius: 999px;
+  font-size: clamp(22px, 6vw, 32px);
+  line-height: 1;
+  font-weight: 950;
+  letter-spacing: -0.04em;
+  color: white;
+  background: rgba(0, 0, 0, 0.42);
+  box-shadow: 0 8px 28px rgba(0, 0, 0, 0.24);
+  backdrop-filter: blur(12px);
+  text-shadow: 0 2px 12px rgba(0, 0, 0, 0.55);
+}
+
+.top-actions.catalog-action {
+  width: min(52vw, 230px);
+  display: grid;
+  gap: 7px;
+  justify-content: stretch;
+}
+
+.small-button.catalog-button {
+  width: 100%;
+  padding: 12px 14px;
+  border-radius: 999px;
+  font-size: clamp(13px, 3.5vw, 15px);
+  line-height: 1.2;
+  white-space: normal;
+  text-align: center;
+  color: white;
+  background: rgba(0, 0, 0, 0.58);
+}
+
+.catalog-help {
+  padding: 7px 10px;
+  border-radius: 14px;
+  font-size: clamp(10px, 2.9vw, 12px);
+  line-height: 1.35;
+  font-weight: 800;
+  text-align: center;
+  color: rgba(255, 255, 255, 0.9);
+  background: rgba(0, 0, 0, 0.34);
+  backdrop-filter: blur(10px);
+}
+
+#guide-card h2 {
+  font-size: clamp(24px, 7vw, 34px);
+  letter-spacing: -0.05em;
+}
+
+#guide-card p {
+  font-size: clamp(16px, 4.5vw, 20px);
+  line-height: 1.7;
+  font-weight: 750;
+}
+
+.collection-row {
+  gap: 10px;
+  margin-top: 18px;
+}
+
+.collection-item {
+  min-width: 110px;
+  padding: 13px 10px;
+  border-radius: 999px;
+  font-size: 14px;
+  font-weight: 950;
+}
+
+@media (max-width: 390px) {
+  .top-bar {
+    left: 12px;
+    right: 12px;
+  }
+
+  #progress {
+    font-size: 22px;
+    padding: 9px 12px;
+  }
+
+  .top-actions.catalog-action {
+    width: 51vw;
+  }
+
+  .catalog-help {
+    font-size: 10px;
+  }
+}
+
+/* ---------- Customer URL Box ---------- */
+.customer-url-box {
+  margin-top: 18px;
+  padding: 16px;
+  border-radius: 22px;
+  background: rgba(255, 255, 255, 0.09);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+}
+
+.customer-url-box h2 {
+  margin: 0 0 8px;
+  font-size: 20px;
+}
+
+.customer-url-box p {
+  margin: 0 0 12px;
+  color: rgba(255, 255, 255, 0.78);
+  line-height: 1.6;
+}
+
+.customer-url-box input {
+  width: 100%;
+  padding: 13px 14px;
+  border: 0;
+  border-radius: 14px;
+  color: #0f172a;
+  background: white;
+  font-size: 14px;
+  font-weight: 800;
+}
+
+.customer-url-box button {
+  width: 100%;
+  padding: 13px 14px;
+  margin-top: 10px;
+  border-radius: 16px;
+  color: #0f172a;
+  background: white;
+  font-size: 15px;
+}
+
+/* ---------- Customer URL Generator ---------- */
+.selected-car-summary {
+  margin: 0 0 10px;
+  padding: 10px 12px;
+  border-radius: 14px;
+  color: #bbf7d0;
+  background: rgba(34, 197, 94, 0.14);
+  font-size: 14px;
+  font-weight: 900;
+  line-height: 1.5;
+}
+
+.selected-car-summary.is-warning {
+  color: #fecaca;
+  background: rgba(239, 68, 68, 0.16);
+}
+
+.customer-url-box textarea {
+  width: 100%;
+  min-height: 86px;
+  padding: 13px 14px;
+  border: 0;
+  border-radius: 14px;
+  color: #0f172a;
+  background: white;
+  font-size: 14px;
+  font-weight: 800;
+  line-height: 1.5;
+  resize: vertical;
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+}
+
+.customer-url-actions {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+  margin-top: 10px;
+}
+
+.customer-url-actions button,
+.url-preview-link {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 48px;
+  padding: 13px 14px;
+  border-radius: 16px;
+  color: #0f172a;
+  background: white;
+  font-size: 15px;
+  font-weight: 900;
+  text-decoration: none;
+}
+
+.url-preview-link {
+  color: white;
+  background: rgba(255, 255, 255, 0.16);
+}
+
+@media (max-width: 520px) {
+  .customer-url-actions {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* ---------- v7 select page scroll / copy menu fix ---------- */
+.select-html,
+.select-html body {
+  width: 100%;
+  height: auto !important;
+  min-height: 100%;
+  overflow-x: hidden !important;
+  overflow-y: auto !important;
+}
+
+.select-body {
+  position: static !important;
+  min-height: 100dvh;
+  padding-bottom: max(32px, env(safe-area-inset-bottom));
+  -webkit-overflow-scrolling: touch;
+}
+
+.select-page {
+  padding-bottom: 96px;
+}
+
+.quick-url-menu {
+  position: sticky;
+  top: 12px;
+  z-index: 10;
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 12px;
+  align-items: center;
+  margin: 18px 0 16px;
+  padding: 14px;
+  border-radius: 22px;
+  background: rgba(15, 23, 42, 0.9);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  box-shadow: 0 16px 42px rgba(0, 0, 0, 0.28);
+  backdrop-filter: blur(16px);
+}
+
+.quick-url-label {
+  margin-bottom: 4px;
+  font-size: 12px;
+  font-weight: 950;
+  letter-spacing: 0.08em;
+  color: #bbf7d0;
+}
+
+.quick-url-summary {
+  font-size: 14px;
+  font-weight: 900;
+  line-height: 1.45;
+  color: rgba(255, 255, 255, 0.9);
+}
+
+.quick-url-summary.is-warning {
+  color: #fecaca;
+}
+
+.quick-url-menu button {
+  min-width: 132px;
+  padding: 13px 14px;
+  border-radius: 16px;
+  color: #0f172a;
+  background: white;
+  font-size: 15px;
+  font-weight: 950;
+}
+
+.customer-url-box {
+  scroll-margin-top: 92px;
+}
+
+@media (max-width: 520px) {
+  .select-header {
+    flex-direction: column;
+  }
+
+  .back-link {
+    align-self: flex-start;
+  }
+
+  .quick-url-menu {
+    grid-template-columns: 1fr;
+  }
+
+  .quick-url-menu button {
+    width: 100%;
+  }
+}
+
+
+/* ---------- v8 simple store operation ---------- */
+.top-bar {
+  justify-content: flex-end !important;
+}
+
+.progress-wrap,
+#progress {
+  display: none !important;
+}
+
+.collection-row {
+  display: none !important;
+}
+
+.top-actions.catalog-action {
+  width: min(58vw, 260px);
+}
+
+#guide-card h2 {
+  font-size: clamp(28px, 7.8vw, 38px);
+}
+
+#guide-card p {
+  font-size: clamp(17px, 4.7vw, 21px);
+  line-height: 1.72;
+}
