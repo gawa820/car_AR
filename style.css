@@ -992,3 +992,113 @@ a-scene {
   font-size: clamp(11px, 2.7vw, 15px);
   line-height: 1.52;
 }
+
+/* ---------- v4 UI copy / header adjustments ---------- */
+.top-bar {
+  align-items: flex-start;
+  gap: 12px;
+}
+
+.progress-wrap {
+  flex: 1;
+  min-width: 0;
+  padding-top: 2px;
+}
+
+.title {
+  display: none !important;
+}
+
+#progress {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 96px;
+  padding: 10px 14px;
+  margin-top: 0;
+  border-radius: 999px;
+  font-size: clamp(22px, 6vw, 32px);
+  line-height: 1;
+  font-weight: 950;
+  letter-spacing: -0.04em;
+  color: white;
+  background: rgba(0, 0, 0, 0.42);
+  box-shadow: 0 8px 28px rgba(0, 0, 0, 0.24);
+  backdrop-filter: blur(12px);
+  text-shadow: 0 2px 12px rgba(0, 0, 0, 0.55);
+}
+
+.top-actions.catalog-action {
+  width: min(52vw, 230px);
+  display: grid;
+  gap: 7px;
+  justify-content: stretch;
+}
+
+.small-button.catalog-button {
+  width: 100%;
+  padding: 12px 14px;
+  border-radius: 999px;
+  font-size: clamp(13px, 3.5vw, 15px);
+  line-height: 1.2;
+  white-space: normal;
+  text-align: center;
+  color: white;
+  background: rgba(0, 0, 0, 0.58);
+}
+
+.catalog-help {
+  padding: 7px 10px;
+  border-radius: 14px;
+  font-size: clamp(10px, 2.9vw, 12px);
+  line-height: 1.35;
+  font-weight: 800;
+  text-align: center;
+  color: rgba(255, 255, 255, 0.9);
+  background: rgba(0, 0, 0, 0.34);
+  backdrop-filter: blur(10px);
+}
+
+#guide-card h2 {
+  font-size: clamp(24px, 7vw, 34px);
+  letter-spacing: -0.05em;
+}
+
+#guide-card p {
+  font-size: clamp(16px, 4.5vw, 20px);
+  line-height: 1.7;
+  font-weight: 750;
+}
+
+.collection-row {
+  gap: 10px;
+  margin-top: 18px;
+}
+
+.collection-item {
+  min-width: 110px;
+  padding: 13px 10px;
+  border-radius: 999px;
+  font-size: 14px;
+  font-weight: 950;
+}
+
+@media (max-width: 390px) {
+  .top-bar {
+    left: 12px;
+    right: 12px;
+  }
+
+  #progress {
+    font-size: 22px;
+    padding: 9px 12px;
+  }
+
+  .top-actions.catalog-action {
+    width: 51vw;
+  }
+
+  .catalog-help {
+    font-size: 10px;
+  }
+}
