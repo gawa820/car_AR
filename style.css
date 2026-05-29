@@ -1102,3 +1102,44 @@ a-scene {
     font-size: 10px;
   }
 }
+
+/* ---------- Customer URL Box ---------- */
+.customer-url-box {
+  margin-top: 18px;
+  padding: 16px;
+  border-radius: 22px;
+  background: rgba(255, 255, 255, 0.09);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+}
+
+.customer-url-box h2 {
+  margin: 0 0 8px;
+  font-size: 20px;
+}
+
+.customer-url-box p {
+  margin: 0 0 12px;
+  color: rgba(255, 255, 255, 0.78);
+  line-height: 1.6;
+}
+
+.customer-url-box input {
+  width: 100%;
+  padding: 13px 14px;
+  border: 0;
+  border-radius: 14px;
+  color: #0f172a;
+  background: white;
+  font-size: 14px;
+  font-weight: 800;
+}
+
+.customer-url-box button {
+  width: 100%;
+  padding: 13px 14px;
+  margin-top: 10px;
+  border-radius: 16px;
+  color: #0f172a;
+  background: white;
+  font-size: 15px;
+}
