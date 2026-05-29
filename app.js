@@ -381,12 +381,14 @@ const finishQuestionsButton = document.getElementById("finish-questions-button")
 
 const openCardsButton = document.getElementById("open-cards-button");
 const closeCardsButton = document.getElementById("close-cards-button");
+const printCatalogButton = document.getElementById("print-catalog-button");
 const resetButton = document.getElementById("reset-button");
 
 const progress = document.getElementById("progress");
 const collectionRow = document.getElementById("collection-row");
 const cardCarousel = document.getElementById("card-carousel");
 const officialLinks = document.getElementById("official-links");
+const printArea = document.getElementById("print-area");
 const modalCardContent = document.getElementById("modal-card-content");
 const closeModalButton = document.getElementById("close-modal-button");
 const modalBackdrop = document.getElementById("modal-backdrop");
@@ -528,6 +530,10 @@ function setupButtons() {
   closeCardsButton.addEventListener("click", () => {
     cardsScreen.classList.add("hidden");
   });
+
+  if (printCatalogButton) {
+    printCatalogButton.addEventListener("click", printCollectedCatalogs);
+  }
 
   closeModalButton.addEventListener("click", closeCardModal);
   modalBackdrop.addEventListener("click", closeCardModal);
@@ -967,12 +973,20 @@ function renderCollection() {
   }
 }
 
+function getVisiblePersonalCards() {
+  const activeIds = new Set(cars.map((car) => car.id));
+  return personalCards.filter((card) => activeIds.has(card.carId));
+}
+
 function renderCardCarousel() {
   cardCarousel.innerHTML = "";
   if (officialLinks) officialLinks.innerHTML = "";
 
-  const activeIds = new Set(cars.map((car) => car.id));
-  const visibleCards = personalCards.filter((card) => activeIds.has(card.carId));
+  const visibleCards = getVisiblePersonalCards();
+
+  if (printCatalogButton) {
+    printCatalogButton.disabled = visibleCards.length === 0;
+  }
 
   if (visibleCards.length === 0) {
     const empty = document.createElement("div");
@@ -996,6 +1010,70 @@ function renderCardCarousel() {
   });
 
   renderOfficialLinks(visibleCards);
+}
+
+
+function printCollectedCatalogs() {
+  loadPersonalCards();
+  const visibleCards = getVisiblePersonalCards();
+
+  if (visibleCards.length === 0) {
+    window.alert("印刷できるミニカタログがまだありません。車を見つけてカードを作成してください。");
+    return;
+  }
+
+  buildPrintArea(visibleCards);
+  window.setTimeout(() => {
+    window.print();
+  }, 250);
+}
+
+function buildPrintArea(cardsToPrint) {
+  if (!printArea) return;
+
+  const pages = chunkArray(cardsToPrint, 6);
+
+  printArea.innerHTML = pages
+    .map((pageCards, pageIndex) => `
+      <section class="print-page">
+        <div class="print-page-header">
+          <div>
+            <div class="print-page-kicker">MY MINI CATALOG</div>
+            <h1>ミニカタログ コレクション</h1>
+          </div>
+          <div class="print-page-count">${pageIndex + 1} / ${pages.length}</div>
+        </div>
+        <div class="print-card-grid">
+          ${pageCards.map((card) => createPrintableCardHtml(card)).join("")}
+        </div>
+      </section>
+    `)
+    .join("");
+}
+
+function createPrintableCardHtml(card) {
+  const car = cars.find((item) => item.id === card.carId);
+  const image = card.cardImage || car?.cardImage || "";
+  const text = card.personalText || car?.description || "";
+
+  return `
+    <article class="print-card">
+      <img class="print-card-bg" src="${escapeHtml(image)}" alt="${escapeHtml(card.carName || car?.name || "ミニカタログ")}" />
+      <div class="print-card-text">
+        <p>${escapeHtml(text)}</p>
+      </div>
+    </article>
+  `;
+}
+
+function chunkArray(items, size) {
+  const chunks = [];
+
+  for (let i = 0; i < items.length; i += size) {
+    chunks.push(items.slice(i, i + size));
+  }
+
+  return chunks;
 }
 
 function renderOfficialLinks(cards) {
