@@ -512,19 +512,22 @@ button {
   right: 8.3%;
   bottom: 5.2%;
   height: 27%;
-  padding: 14px 14px 10px;
+  padding: 10px 12px;
   color: #111827;
   display: flex;
-  flex-direction: column;
-  justify-content: space-between;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
 }
 
 .catalog-card-text p {
   margin: 0;
-  font-size: clamp(11px, 2.6vw, 15px);
-  line-height: 1.52;
+  font-size: clamp(10px, 2.35vw, 13px);
+  line-height: 1.5;
   font-weight: 800;
-  letter-spacing: -0.03em;
+  letter-spacing: -0.04em;
+  word-break: normal;
+  overflow-wrap: anywhere;
 }
 
 .catalog-card-tags {
@@ -703,14 +706,27 @@ a-scene {
 /* ---------- Empty Catalog / Card Text Fix ---------- */
 
 .catalog-card-text {
+  position: absolute;
+  left: 8.3%;
+  right: 8.3%;
+  bottom: 5.2%;
+  height: 27%;
+  padding: 10px 12px;
+  color: #111827;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   overflow: hidden;
 }
 
 .catalog-card-text p {
-  display: -webkit-box;
-  -webkit-line-clamp: 6;
-  -webkit-box-orient: vertical;
-  overflow: hidden;
+  margin: 0;
+  font-size: clamp(10px, 2.35vw, 13px);
+  line-height: 1.5;
+  font-weight: 800;
+  letter-spacing: -0.04em;
+  word-break: normal;
+  overflow-wrap: anywhere;
 }
 
 .large-catalog-card .catalog-card-text p {
@@ -928,4 +944,51 @@ a-scene {
 .collection-item {
   flex: 0 0 auto;
   min-width: 92px;
+}
+
+
+/* ---------- Official Links ---------- */
+
+.catalog-card-tags {
+  display: none !important;
+}
+
+.official-links {
+  margin: 0 8px 10px;
+  padding: 16px;
+  border-radius: 22px;
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.official-links:empty {
+  display: none;
+}
+
+.official-links-title {
+  margin-bottom: 10px;
+  font-size: 13px;
+  font-weight: 950;
+  letter-spacing: 0.08em;
+  color: #bbf7d0;
+}
+
+.official-link-list {
+  display: grid;
+  gap: 8px;
+}
+
+.official-link-list a {
+  display: block;
+  padding: 12px 14px;
+  border-radius: 999px;
+  color: white;
+  font-weight: 900;
+  text-decoration: none;
+  background: rgba(255, 255, 255, 0.14);
+}
+
+.large-catalog-card .catalog-card-text p {
+  font-size: clamp(11px, 2.7vw, 15px);
+  line-height: 1.52;
 }
