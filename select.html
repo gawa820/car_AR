@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="ja">
+<html lang="ja" class="select-html">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -25,6 +25,14 @@
         チェックした車種だけを表示する「お客様用URL」を作成できます。
         お店の人は車種を選び、URLをコピーして、お客様に共有してください。
       </p>
+
+      <div class="quick-url-menu">
+        <div>
+          <div class="quick-url-label">お客様用URL</div>
+          <div id="quick-url-summary" class="quick-url-summary">車種を選択してください</div>
+        </div>
+        <button id="quick-copy-url-button" type="button">URLをコピー</button>
+      </div>
 
       <div class="select-toolbar">
         <button id="select-all-button" type="button">すべて選択</button>
@@ -64,6 +72,8 @@
     const resetSelectionButton = document.getElementById("reset-selection-button");
     const customerUrlInput = document.getElementById("customer-url");
     const copyUrlButton = document.getElementById("copy-url-button");
+    const quickCopyUrlButton = document.getElementById("quick-copy-url-button");
+    const quickUrlSummary = document.getElementById("quick-url-summary");
     const selectedCarSummary = document.getElementById("selected-car-summary");
     const openCustomerUrl = document.getElementById("open-customer-url");
 
@@ -151,16 +161,8 @@
         updateCustomerUrl();
       });
 
-      copyUrlButton.addEventListener("click", async () => {
-        updateCustomerUrl();
-        try {
-          await navigator.clipboard.writeText(customerUrlInput.value);
-          statusEl.textContent = "お客様用URLをコピーしました。";
-        } catch {
-          customerUrlInput.select();
-          statusEl.textContent = "URL欄を選択しました。手動でコピーしてください。";
-        }
-      });
+      copyUrlButton.addEventListener("click", copyCustomerUrl);
+      quickCopyUrlButton.addEventListener("click", copyCustomerUrl);
     }
 
     function getCheckboxes() {
@@ -177,6 +179,24 @@
       const count = getSelectedIds().length;
       statusEl.textContent = `${count} / ${cars.length} 車種を表示対象にしています。`;
       updateCustomerUrl();
+    }
+
+    async function copyCustomerUrl() {
+      updateCustomerUrl();
+
+      if (getSelectedIds().length === 0) {
+        window.alert("最低1車種は選択してください。");
+        return;
+      }
+
+      try {
+        await navigator.clipboard.writeText(customerUrlInput.value);
+        statusEl.textContent = "お客様用URLをコピーしました。";
+      } catch {
+        customerUrlInput.focus();
+        customerUrlInput.select();
+        statusEl.textContent = "URL欄を選択しました。手動でコピーしてください。";
+      }
     }
 
     function updateCustomerUrl() {
@@ -198,16 +218,28 @@
         openCustomerUrl.href = url;
       }
 
-      if (selectedCarSummary) {
+      if (selectedCarSummary || quickUrlSummary) {
         if (ids.length === 0) {
-          selectedCarSummary.textContent = "車種が選択されていません。最低1車種を選んでください。";
-          selectedCarSummary.classList.add("is-warning");
+          if (selectedCarSummary) {
+            selectedCarSummary.textContent = "車種が選択されていません。最低1車種を選んでください。";
+            selectedCarSummary.classList.add("is-warning");
+          }
+          if (quickUrlSummary) {
+            quickUrlSummary.textContent = "未選択です";
+            quickUrlSummary.classList.add("is-warning");
+          }
         } else {
           const names = cars
             .filter((car) => ids.includes(car.id))
             .map((car) => car.name);
-          selectedCarSummary.textContent = `選択中：${names.join(" / ")}`;
-          selectedCarSummary.classList.remove("is-warning");
+          if (selectedCarSummary) {
+            selectedCarSummary.textContent = `選択中：${names.join(" / ")}`;
+            selectedCarSummary.classList.remove("is-warning");
+          }
+          if (quickUrlSummary) {
+            quickUrlSummary.textContent = `${ids.length}車種：${names.join(" / ")}`;
+            quickUrlSummary.classList.remove("is-warning");
+          }
         }
       }
     }
