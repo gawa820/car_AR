@@ -567,19 +567,21 @@ function setupButtons() {
   closeModalButton.addEventListener("click", closeCardModal);
   modalBackdrop.addEventListener("click", closeCardModal);
 
-  resetButton.addEventListener("click", () => {
-    const ok = window.confirm("コレクションとミニカタログをリセットしますか？");
-    if (!ok) return;
+  if (resetButton) {
+    resetButton.addEventListener("click", () => {
+      const ok = window.confirm("コレクションとミニカタログをリセットしますか？");
+      if (!ok) return;
 
-    discoveredIds = new Set();
-    personalCards = [];
-    currentCar = null;
+      discoveredIds = new Set();
+      personalCards = [];
+      currentCar = null;
 
-    saveCollection();
-    savePersonalCards();
-    renderCollection();
-    showGuide();
-  });
+      saveCollection();
+      savePersonalCards();
+      renderCollection();
+      showGuide();
+    });
+  }
 }
 
 function setupTargetEvents() {
@@ -992,7 +994,7 @@ function renderCollection() {
   const total = cars.length || 0;
   const activeIds = new Set(cars.map((car) => car.id));
   const discoveredActiveCount = [...discoveredIds].filter((id) => activeIds.has(id)).length;
-  progress.textContent = `${discoveredActiveCount} / ${total} 発見`;
+  progress.textContent = `${discoveredActiveCount}/${total} 発見`;
 
   collectionRow.innerHTML = "";
 
