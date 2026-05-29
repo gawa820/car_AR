@@ -38,6 +38,13 @@
       </div>
 
       <div id="select-status" class="select-status"></div>
+
+      <div class="customer-url-box">
+        <h2>お客様用URL</h2>
+        <p>このURLをQRコード化すると、お客様の端末でも選択した車種だけ表示できます。</p>
+        <input id="customer-url" type="text" readonly />
+        <button id="copy-url-button" type="button">URLをコピー</button>
+      </div>
     </section>
   </main>
 
@@ -50,6 +57,8 @@
     const selectAllButton = document.getElementById("select-all-button");
     const clearButton = document.getElementById("clear-button");
     const resetSelectionButton = document.getElementById("reset-selection-button");
+    const customerUrlInput = document.getElementById("customer-url");
+    const copyUrlButton = document.getElementById("copy-url-button");
 
     let cars = [];
 
@@ -125,12 +134,25 @@
 
         localStorage.setItem(ENABLED_CARS_STORAGE_KEY, JSON.stringify(ids));
         statusEl.textContent = `${ids.length}車種を保存しました。AR画面に戻ると反映されます。`;
+        updateCustomerUrl();
       });
 
       resetSelectionButton.addEventListener("click", () => {
         localStorage.removeItem(ENABLED_CARS_STORAGE_KEY);
         renderCars();
         statusEl.textContent = "全車種表示に戻しました。";
+        updateCustomerUrl();
+      });
+
+      copyUrlButton.addEventListener("click", async () => {
+        updateCustomerUrl();
+        try {
+          await navigator.clipboard.writeText(customerUrlInput.value);
+          statusEl.textContent = "お客様用URLをコピーしました。";
+        } catch {
+          customerUrlInput.select();
+          statusEl.textContent = "URL欄を選択しました。手動でコピーしてください。";
+        }
       });
     }
 
@@ -147,6 +169,20 @@
     function updateStatus() {
       const count = getSelectedIds().length;
       statusEl.textContent = `${count} / ${cars.length} 車種を表示対象にしています。`;
+      updateCustomerUrl();
+    }
+
+    function updateCustomerUrl() {
+      if (!customerUrlInput) return;
+
+      const ids = getSelectedIds();
+      const baseUrl = new URL("./", window.location.href);
+
+      if (ids.length > 0 && ids.length < cars.length) {
+        baseUrl.searchParams.set("cars", ids.join(","));
+      }
+
+      customerUrlInput.value = baseUrl.toString();
     }
 
     function escapeHtml(text) {
