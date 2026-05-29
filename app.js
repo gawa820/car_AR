@@ -6,7 +6,6 @@ let personalCards = [];
 
 const DISCOVERY_STORAGE_KEY = "carDiscoveryDiscoveredIds_v4";
 const CARD_STORAGE_KEY = "carDiscoveryMiniCatalogs_v2";
-const ENABLED_CARS_STORAGE_KEY = "carDiscoveryEnabledCarIds_v1";
 
 let currentQuestionIndex = 0;
 let currentAnswers = [];
@@ -400,12 +399,7 @@ async function main() {
 
   try {
     allCars = await loadCars();
-    cars = getEnabledCars(allCars);
-
-    if (cars.length === 0) {
-      cars = allCars;
-      saveEnabledCarIds(cars.map((car) => car.id));
-    }
+    cars = allCars;
 
     ensureTargetEntities(allCars);
     filterSavedStateToEnabledCars();
@@ -437,35 +431,6 @@ async function loadCars() {
   }
 
   return data;
-}
-
-function getEnabledCarIds() {
-  const raw = localStorage.getItem(ENABLED_CARS_STORAGE_KEY);
-
-  if (!raw) return null;
-
-  try {
-    const ids = JSON.parse(raw);
-    return Array.isArray(ids) ? ids : null;
-  } catch (error) {
-    console.warn("有効車種の読み込みに失敗しました", error);
-    return null;
-  }
-}
-
-function saveEnabledCarIds(ids) {
-  localStorage.setItem(ENABLED_CARS_STORAGE_KEY, JSON.stringify(ids));
-}
-
-function getEnabledCars(carList) {
-  const enabledIds = getEnabledCarIds();
-
-  if (!enabledIds || enabledIds.length === 0) {
-    return carList;
-  }
-
-  const enabledSet = new Set(enabledIds);
-  return carList.filter((car) => enabledSet.has(car.id));
 }
 
 function filterSavedStateToEnabledCars() {
@@ -567,19 +532,21 @@ function setupButtons() {
   closeModalButton.addEventListener("click", closeCardModal);
   modalBackdrop.addEventListener("click", closeCardModal);
 
-  resetButton.addEventListener("click", () => {
-    const ok = window.confirm("コレクションとミニカタログをリセットしますか？");
-    if (!ok) return;
+  if (resetButton) {
+    resetButton.addEventListener("click", () => {
+      const ok = window.confirm("コレクションとミニカタログをリセットしますか？");
+      if (!ok) return;
 
-    discoveredIds = new Set();
-    personalCards = [];
-    currentCar = null;
+      discoveredIds = new Set();
+      personalCards = [];
+      currentCar = null;
 
-    saveCollection();
-    savePersonalCards();
-    renderCollection();
-    showGuide();
-  });
+      saveCollection();
+      savePersonalCards();
+      renderCollection();
+      showGuide();
+    });
+  }
 }
 
 function setupTargetEvents() {
@@ -989,26 +956,15 @@ function showCatalogCreatedMessage() {
 }
 
 function renderCollection() {
-  const total = cars.length || 0;
-  const activeIds = new Set(cars.map((car) => car.id));
-  const discoveredActiveCount = [...discoveredIds].filter((id) => activeIds.has(id)).length;
-  progress.textContent = `${discoveredActiveCount} / ${total} 発見`;
+  // 店舗運用では、進捗数や対象車種リストを画面に出さない。
+  // お客様は店内にある車を自由にスキャンする。
+  if (progress) {
+    progress.textContent = "";
+  }
 
-  collectionRow.innerHTML = "";
-
-  cars.forEach((car) => {
-    const item = document.createElement("div");
-    item.className = "collection-item";
-
-    if (discoveredIds.has(car.id)) {
-      item.classList.add("discovered");
-      item.textContent = `✅ ${shortName(car.name)}`;
-    } else {
-      item.textContent = `⬜ ${shortName(car.name)}`;
-    }
-
-    collectionRow.appendChild(item);
-  });
+  if (collectionRow) {
+    collectionRow.innerHTML = "";
+  }
 }
 
 function renderCardCarousel() {
