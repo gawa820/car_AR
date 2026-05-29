@@ -387,6 +387,7 @@ const resetButton = document.getElementById("reset-button");
 const progress = document.getElementById("progress");
 const collectionRow = document.getElementById("collection-row");
 const cardCarousel = document.getElementById("card-carousel");
+const officialLinks = document.getElementById("official-links");
 const modalCardContent = document.getElementById("modal-card-content");
 const closeModalButton = document.getElementById("close-modal-button");
 const modalBackdrop = document.getElementById("modal-backdrop");
@@ -689,7 +690,7 @@ function openQuestionPanel(car) {
 
 function getCurrentQuestionFlow() {
   if (!currentCar) return [];
-  return questionFlows[currentCar.id] || [];
+  return (questionFlows[currentCar.id] || []).slice(0, 2);
 }
 
 function renderQuestion() {
@@ -882,6 +883,7 @@ function finishQuestionsAndCreateCatalog() {
     type: currentCar.type,
     cardColor: currentCar.cardColor,
     cardImage: currentCar.cardImage,
+    officialUrl: currentCar.officialUrl,
     cardCatch: "あなただけのミニカタログ",
     personalText: catalogText,
     interests: tags,
@@ -1011,6 +1013,7 @@ function renderCollection() {
 
 function renderCardCarousel() {
   cardCarousel.innerHTML = "";
+  if (officialLinks) officialLinks.innerHTML = "";
 
   const activeIds = new Set(cars.map((car) => car.id));
   const visibleCards = personalCards.filter((card) => activeIds.has(card.carId));
@@ -1035,6 +1038,45 @@ function renderCardCarousel() {
     cardEl.addEventListener("click", () => openCardModal(card));
     cardCarousel.appendChild(cardEl);
   });
+
+  renderOfficialLinks(visibleCards);
+}
+
+function renderOfficialLinks(cards) {
+  if (!officialLinks) return;
+
+  const uniqueItems = [];
+  const seen = new Set();
+
+  cards.forEach((card) => {
+    if (seen.has(card.carId)) return;
+    seen.add(card.carId);
+
+    const car = cars.find((item) => item.id === card.carId);
+    const url = card.officialUrl || car?.officialUrl;
+    const name = card.carName || car?.name;
+
+    if (!url || !name) return;
+
+    uniqueItems.push({ name, url });
+  });
+
+  if (uniqueItems.length === 0) {
+    officialLinks.innerHTML = "";
+    return;
+  }
+
+  officialLinks.innerHTML = `
+    <div class="official-links-title">メーカー公式ページ</div>
+    <div class="official-link-list">
+      ${uniqueItems
+        .map(
+          (item) =>
+            `<a href="${escapeHtml(item.url)}" target="_blank" rel="noopener noreferrer">${escapeHtml(item.name)} 公式サイト</a>`
+        )
+        .join("")}
+    </div>
+  `;
 }
 
 function createTradingCardElement(card) {
@@ -1042,15 +1084,9 @@ function createTradingCardElement(card) {
   el.className = "catalog-card-image";
   el.style.backgroundImage = `url("${card.cardImage}")`;
 
-  const createdDate = formatDate(card.createdAt);
-
   el.innerHTML = `
     <div class="catalog-card-text">
       <p>${escapeHtml(card.personalText)}</p>
-      <div class="catalog-card-tags">
-        ${card.interests.map((tag) => `<span>${escapeHtml(tag)}</span>`).join("")}
-        <span>GET ${createdDate}</span>
-      </div>
     </div>
   `;
 
