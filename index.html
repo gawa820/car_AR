@@ -6,7 +6,7 @@
     name="viewport"
     content="width=device-width, initial-scale=1.0, user-scalable=no"
   />
-  <title>Car Discovery WebAR</title>
+  <title>ミニカタログ WebAR</title>
 
   <link rel="stylesheet" href="./style.css" />
 
@@ -22,10 +22,10 @@
   <div id="start-screen" class="screen">
     <div class="panel start-panel">
       <div class="badge">WEB AR MINI CATALOG</div>
-      <h1>Car Discovery</h1>
+      <h1>ミニカタログ体験</h1>
       <p>
-        ホールの中にある車を探して、床のDISCOVERマークをスキャンしよう。
-        気になることを選んでいくと、あなただけのミニカタログが作れます。
+        店内で気になる車を探して、車の近くにあるQRコードを読み取りましょう。
+        見どころを選んでいくと、あなただけのミニカタログが作れます。
       </p>
       <button id="start-button">スタート</button>
       <p class="note">カメラの使用を許可してください。</p>
@@ -35,23 +35,21 @@
   <!-- Main UI -->
   <div id="ui">
     <div class="top-bar">
-      <div>
-        <div class="title">Car Discovery</div>
+      <div class="progress-wrap">
         <div id="progress">0 / 3 発見</div>
       </div>
 
-      <div class="top-actions">
-        <a href="./select.html" class="small-button small-link-button">車種選択</a>
-        <button id="open-cards-button" class="small-button">カタログ</button>
-        <button id="reset-button" class="small-button">リセット</button>
+      <div class="top-actions catalog-action">
+        <button id="open-cards-button" class="small-button catalog-button">カタログコレクション</button>
+        <div class="catalog-help">集めたカードはここから見れます</div>
       </div>
     </div>
 
     <!-- Guide -->
     <div id="guide-card" class="bottom-card">
-      <h2>床のDISCOVERマークを探そう</h2>
+      <h2>店内の車を探そう</h2>
       <p>
-        車の近くにあるマーカーにカメラを向けてください。
+        下に表示されている車種を店内で探しましょう。車の近くにあるQRコードを読み取ると、ミニカタログを作れます。
       </p>
 
       <div id="collection-row" class="collection-row"></div>
