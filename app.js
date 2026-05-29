@@ -440,12 +440,6 @@ async function loadCars() {
 }
 
 function getEnabledCarIds() {
-  const urlIds = getEnabledCarIdsFromUrl();
-
-  // URL指定がある場合は、店舗端末の localStorage より優先します。
-  // 例: ./index.html?cars=car01,car03
-  if (urlIds) return urlIds;
-
   const raw = localStorage.getItem(ENABLED_CARS_STORAGE_KEY);
 
   if (!raw) return null;
@@ -457,20 +451,6 @@ function getEnabledCarIds() {
     console.warn("有効車種の読み込みに失敗しました", error);
     return null;
   }
-}
-
-function getEnabledCarIdsFromUrl() {
-  const params = new URLSearchParams(window.location.search);
-  const raw = params.get("cars");
-
-  if (!raw) return null;
-
-  const ids = raw
-    .split(",")
-    .map((id) => id.trim())
-    .filter(Boolean);
-
-  return ids.length > 0 ? ids : null;
 }
 
 function saveEnabledCarIds(ids) {
@@ -587,21 +567,19 @@ function setupButtons() {
   closeModalButton.addEventListener("click", closeCardModal);
   modalBackdrop.addEventListener("click", closeCardModal);
 
-  if (resetButton) {
-    resetButton.addEventListener("click", () => {
-      const ok = window.confirm("コレクションとミニカタログをリセットしますか？");
-      if (!ok) return;
+  resetButton.addEventListener("click", () => {
+    const ok = window.confirm("コレクションとミニカタログをリセットしますか？");
+    if (!ok) return;
 
-      discoveredIds = new Set();
-      personalCards = [];
-      currentCar = null;
+    discoveredIds = new Set();
+    personalCards = [];
+    currentCar = null;
 
-      saveCollection();
-      savePersonalCards();
-      renderCollection();
-      showGuide();
-    });
-  }
+    saveCollection();
+    savePersonalCards();
+    renderCollection();
+    showGuide();
+  });
 }
 
 function setupTargetEvents() {
@@ -1014,7 +992,7 @@ function renderCollection() {
   const total = cars.length || 0;
   const activeIds = new Set(cars.map((car) => car.id));
   const discoveredActiveCount = [...discoveredIds].filter((id) => activeIds.has(id)).length;
-  progress.textContent = `${discoveredActiveCount}/${total} 発見`;
+  progress.textContent = `${discoveredActiveCount} / ${total} 発見`;
 
   collectionRow.innerHTML = "";
 
