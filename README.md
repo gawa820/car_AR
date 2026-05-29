@@ -1,13 +1,21 @@
-# Car Discovery - vehicle switching version
+# Car Discovery - simple store operation version
 
-## What changed in v7
+## What changed
 
-- Fixed scrolling on `select.html`.
-- Added a sticky `URLをコピー` menu near the top of `select.html`.
-- Customer URLs like `https://gawa820.github.io/car_AR/?cars=car01,car03` select visible vehicles on customer devices.
+- Removed customer-facing vehicle selection behavior.
+- The app no longer changes display vehicles by URL query such as `?cars=car01,car03`.
+- Removed the visible `0/3 発見` progress display from the AR UI.
+- Removed the vehicle-name chips from the bottom guide card.
+- Updated the guide copy so customers scan any vehicle QR code in the store.
 
-Upload these files to update the app:
+## Files to upload
 
-- `select.html`
+Upload or overwrite these files on GitHub Pages:
+
+- `index.html`
+- `app.js`
 - `style.css`
+- `select.html`
 - `README.md`
+
+Keep existing `assets/` and `targets.mind` as they are.
