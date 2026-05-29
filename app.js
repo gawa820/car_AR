@@ -440,6 +440,12 @@ async function loadCars() {
 }
 
 function getEnabledCarIds() {
+  const urlIds = getEnabledCarIdsFromUrl();
+
+  // URL指定がある場合は、店舗端末の localStorage より優先します。
+  // 例: ./index.html?cars=car01,car03
+  if (urlIds) return urlIds;
+
   const raw = localStorage.getItem(ENABLED_CARS_STORAGE_KEY);
 
   if (!raw) return null;
@@ -451,6 +457,20 @@ function getEnabledCarIds() {
     console.warn("有効車種の読み込みに失敗しました", error);
     return null;
   }
+}
+
+function getEnabledCarIdsFromUrl() {
+  const params = new URLSearchParams(window.location.search);
+  const raw = params.get("cars");
+
+  if (!raw) return null;
+
+  const ids = raw
+    .split(",")
+    .map((id) => id.trim())
+    .filter(Boolean);
+
+  return ids.length > 0 ? ids : null;
 }
 
 function saveEnabledCarIds(ids) {
