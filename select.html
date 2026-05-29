@@ -22,7 +22,8 @@
 
     <section class="select-panel">
       <p class="select-help">
-        未設定のときは全車種が表示されます。保存すると、この端末では選んだ車種だけがAR画面・発見数・ミニカタログ一覧に出ます。
+        チェックした車種だけを表示する「お客様用URL」を作成できます。
+        お店の人は車種を選び、URLをコピーして、お客様に共有してください。
       </p>
 
       <div class="select-toolbar">
@@ -32,18 +33,22 @@
 
       <div id="car-select-list" class="car-select-list"></div>
 
-      <div class="select-actions">
-        <button id="save-button" type="button">この車種で保存</button>
-        <button id="reset-selection-button" type="button" class="secondary-button">全車種表示に戻す</button>
-      </div>
-
       <div id="select-status" class="select-status"></div>
 
       <div class="customer-url-box">
         <h2>お客様用URL</h2>
-        <p>このURLをQRコード化すると、お客様の端末でも選択した車種だけ表示できます。</p>
-        <input id="customer-url" type="text" readonly />
-        <button id="copy-url-button" type="button">URLをコピー</button>
+        <p>選択中の車種だけが表示されるURLです。保存しなくても、チェックを変えるだけでURLが更新されます。</p>
+        <div id="selected-car-summary" class="selected-car-summary"></div>
+        <textarea id="customer-url" readonly rows="3"></textarea>
+        <div class="customer-url-actions">
+          <button id="copy-url-button" type="button">URLをコピー</button>
+          <a id="open-customer-url" class="url-preview-link" href="./index.html" target="_blank" rel="noopener">このURLで確認</a>
+        </div>
+      </div>
+
+      <div class="select-actions">
+        <button id="save-button" type="button">この端末にも保存</button>
+        <button id="reset-selection-button" type="button" class="secondary-button">全車種表示に戻す</button>
       </div>
     </section>
   </main>
@@ -59,6 +64,8 @@
     const resetSelectionButton = document.getElementById("reset-selection-button");
     const customerUrlInput = document.getElementById("customer-url");
     const copyUrlButton = document.getElementById("copy-url-button");
+    const selectedCarSummary = document.getElementById("selected-car-summary");
+    const openCustomerUrl = document.getElementById("open-customer-url");
 
     let cars = [];
 
@@ -133,7 +140,7 @@
         }
 
         localStorage.setItem(ENABLED_CARS_STORAGE_KEY, JSON.stringify(ids));
-        statusEl.textContent = `${ids.length}車種を保存しました。AR画面に戻ると反映されます。`;
+        statusEl.textContent = `${ids.length}車種をこの端末に保存しました。URL共有は上の「お客様用URL」を使ってください。`;
         updateCustomerUrl();
       });
 
@@ -178,11 +185,31 @@
       const ids = getSelectedIds();
       const baseUrl = new URL("./", window.location.href);
 
-      if (ids.length > 0 && ids.length < cars.length) {
+      if (ids.length > 0) {
         baseUrl.searchParams.set("cars", ids.join(","));
+      } else {
+        baseUrl.searchParams.delete("cars");
       }
 
-      customerUrlInput.value = baseUrl.toString();
+      const url = baseUrl.toString();
+      customerUrlInput.value = url;
+
+      if (openCustomerUrl) {
+        openCustomerUrl.href = url;
+      }
+
+      if (selectedCarSummary) {
+        if (ids.length === 0) {
+          selectedCarSummary.textContent = "車種が選択されていません。最低1車種を選んでください。";
+          selectedCarSummary.classList.add("is-warning");
+        } else {
+          const names = cars
+            .filter((car) => ids.includes(car.id))
+            .map((car) => car.name);
+          selectedCarSummary.textContent = `選択中：${names.join(" / ")}`;
+          selectedCarSummary.classList.remove("is-warning");
+        }
+      }
     }
 
     function escapeHtml(text) {
