@@ -1143,3 +1143,68 @@ a-scene {
   background: white;
   font-size: 15px;
 }
+
+/* ---------- Customer URL Generator ---------- */
+.selected-car-summary {
+  margin: 0 0 10px;
+  padding: 10px 12px;
+  border-radius: 14px;
+  color: #bbf7d0;
+  background: rgba(34, 197, 94, 0.14);
+  font-size: 14px;
+  font-weight: 900;
+  line-height: 1.5;
+}
+
+.selected-car-summary.is-warning {
+  color: #fecaca;
+  background: rgba(239, 68, 68, 0.16);
+}
+
+.customer-url-box textarea {
+  width: 100%;
+  min-height: 86px;
+  padding: 13px 14px;
+  border: 0;
+  border-radius: 14px;
+  color: #0f172a;
+  background: white;
+  font-size: 14px;
+  font-weight: 800;
+  line-height: 1.5;
+  resize: vertical;
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+}
+
+.customer-url-actions {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+  margin-top: 10px;
+}
+
+.customer-url-actions button,
+.url-preview-link {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 48px;
+  padding: 13px 14px;
+  border-radius: 16px;
+  color: #0f172a;
+  background: white;
+  font-size: 15px;
+  font-weight: 900;
+  text-decoration: none;
+}
+
+.url-preview-link {
+  color: white;
+  background: rgba(255, 255, 255, 0.16);
+}
+
+@media (max-width: 520px) {
+  .customer-url-actions {
+    grid-template-columns: 1fr;
+  }
+}
