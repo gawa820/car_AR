@@ -1386,7 +1386,7 @@ function renderCardCarousel() {
         <div class="empty-peek-card card-b"></div>
         <div class="empty-peek-card card-c"></div>
       </div>
-      <p>まだミニカタログはありません。<br>車を見つけて、見どころを選ぶと作成できます。</p>
+      <p>まだミニカタログはありません。<br>店内のロゴカードを見つけて、見どころを選ぶと作成できます。</p>
     `;
     cardCarousel.appendChild(empty);
     return;
@@ -1422,7 +1422,7 @@ function printCollectedCatalogs() {
   const visibleCards = getVisiblePersonalCards();
 
   if (visibleCards.length === 0) {
-    window.alert("印刷できるミニカタログがまだありません。車を見つけてカードを作成してください。");
+    window.alert("ミニカタログがまだありません。店内のロゴカードを見つけて、カードを作成してください。");
     return;
   }
 
