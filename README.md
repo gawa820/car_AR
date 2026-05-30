@@ -1,21 +1,12 @@
-# Car Discovery - simple store operation version
+Car AR UI fix v14
 
-## What changed
+Overwrite these three files at the repository root:
+- app.js
+- index.html
+- style.css
 
-- Removed customer-facing vehicle selection behavior.
-- The app no longer changes display vehicles by URL query such as `?cars=car01,car03`.
-- Removed the visible `0/3 発見` progress display from the AR UI.
-- Removed the vehicle-name chips from the bottom guide card.
-- Updated the guide copy so customers scan any vehicle QR code in the store.
-
-## Files to upload
-
-Upload or overwrite these files on GitHub Pages:
-
-- `index.html`
-- `app.js`
-- `style.css`
-- `select.html`
-- `README.md`
-
-Keep existing `assets/` and `targets.mind` as they are.
+Changes:
+- Hide the A4 print button from the collection screen.
+- Do not display official links on the collection screen.
+- Show only the selected card's official link when that card is opened.
+- After a new card is created, focus the carousel on that newly created card.
