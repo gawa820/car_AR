@@ -344,6 +344,349 @@ const questionFlows = {
       ]
     }
   ]
+,
+  car04: [
+    {
+      id: "freed_first",
+      question: "FREEDを見て、まず気になるところは？",
+      choices: [
+        {
+          label: "コンパクトなのに広そうな室内",
+          tag: "室内空間",
+          title: "室内の広さを見てみましょう",
+          text: "外から見た扱いやすいサイズ感と、乗り込んだときのゆとりを比べてみてください。日常で使う場面が想像しやすくなります。",
+          catalogPhrase: "扱いやすいサイズの中にゆとりある室内空間を備え"
+        },
+        {
+          label: "家族で使いやすそうなところ",
+          tag: "家族利用",
+          title: "乗り降りのしやすさを確認しましょう",
+          text: "スライドドアや後席へのアクセスを見ながら、家族で出かける場面を想像してみてください。",
+          catalogPhrase: "家族で乗り降りしやすい工夫があり"
+        },
+        {
+          label: "荷物を積みやすそうなところ",
+          tag: "荷室",
+          title: "荷室を見てみましょう",
+          text: "普段の買い物や週末のお出かけを思い浮かべながら、荷室の高さや使い方を確認してみてください。",
+          catalogPhrase: "暮らしに合わせて荷物を積みやすく"
+        }
+      ]
+    },
+    {
+      id: "freed_inside",
+      question: "FREEDで実際に確認してみたいところは？",
+      choices: [
+        {
+          label: "1列目から3列目までの移動",
+          tag: "ウォークスルー",
+          title: "車内の移動を試してみましょう",
+          text: "シートの間を通りながら、車内での移動のしやすさを確認してみてください。雨の日や子どもとの移動も想像しやすくなります。",
+          catalogPhrase: "車内を移動しやすいウォークスルーも魅力で"
+        },
+        {
+          label: "シートアレンジ",
+          tag: "アレンジ",
+          title: "使い方を想像してみましょう",
+          text: "人数や荷物に応じて、どんな使い方ができそうか見てみましょう。日常とお出かけの両方を考えるとわかりやすいです。",
+          catalogPhrase: "暮らしに合わせたシートアレンジを楽しめる"
+        },
+        {
+          label: "運転席からの見え方",
+          tag: "見晴らし",
+          title: "運転席から周囲を見てみましょう",
+          text: "前方や左右の見え方を確認しながら、街中で扱いやすそうかを感じてみてください。",
+          catalogPhrase: "日常で扱いやすい見晴らしも備える"
+        }
+      ]
+    }
+  ],
+
+  car05: [
+    {
+      id: "nonee_first",
+      question: "N-ONE e:を見て、どこに惹かれますか？",
+      choices: [
+        {
+          label: "親しみやすいデザイン",
+          tag: "デザイン",
+          title: "外からじっくり眺めてみましょう",
+          text: "丸いライトやコンパクトなボディを見ながら、毎日の暮らしになじみそうか想像してみてください。",
+          catalogPhrase: "親しみやすいデザインが暮らしになじみ"
+        },
+        {
+          label: "EVらしい新しさ",
+          tag: "EV",
+          title: "EVらしいポイントを探してみましょう",
+          text: "充電口や運転席まわりを見ながら、ガソリン車とは少し違う日常を想像してみてください。",
+          catalogPhrase: "EVらしい新しい使い方を身近に感じられ"
+        },
+        {
+          label: "街中で使いやすそうなサイズ",
+          tag: "サイズ感",
+          title: "車のまわりを一周してみましょう",
+          text: "駐車や細い道で使う場面を思い浮かべながら、コンパクトなサイズ感を確認してみてください。",
+          catalogPhrase: "街中で扱いやすいコンパクトなサイズ感を持つ"
+        }
+      ]
+    },
+    {
+      id: "nonee_daily",
+      question: "N-ONE e:を日常で使うなら、何を確かめたいですか？",
+      choices: [
+        {
+          label: "充電のしやすさ",
+          tag: "充電",
+          title: "充電する場面を想像してみましょう",
+          text: "自宅や外出先で充電する場面を思い浮かべながら、EVを毎日の生活にどう取り入れるか考えてみてください。",
+          catalogPhrase: "日常に取り入れやすい充電性能も魅力で"
+        },
+        {
+          label: "運転席まわりの使いやすさ",
+          tag: "運転席",
+          title: "運転席に座ってみましょう",
+          text: "視界や操作まわりを見ながら、普段の買い物や近距離移動で使う自分を想像してみてください。",
+          catalogPhrase: "毎日使いやすい運転席まわりを備え"
+        },
+        {
+          label: "小さくても十分な室内",
+          tag: "室内",
+          title: "室内の広さを確認してみましょう",
+          text: "前席や後席を見ながら、普段の人数や荷物に合いそうか確認してみてください。",
+          catalogPhrase: "小さなボディの中に日常で使いやすい空間があり"
+        }
+      ]
+    }
+  ],
+
+  car06: [
+    {
+      id: "insight_first",
+      question: "新しいINSIGHTを見て、どこが気になりますか？",
+      choices: [
+        {
+          label: "SUVらしい存在感",
+          tag: "SUVデザイン",
+          title: "外観を角度を変えて見てみましょう",
+          text: "正面、斜め前、横から眺めながら、クロスオーバーSUVらしい力強さや落ち着きを感じてみてください。",
+          catalogPhrase: "クロスオーバーSUVらしい存在感があり"
+        },
+        {
+          label: "EVとしての新しさ",
+          tag: "EV",
+          title: "新しいINSIGHTらしさを探してみましょう",
+          text: "外観や運転席まわりから、EVとして生まれ変わったINSIGHTの新しさを感じてみてください。",
+          catalogPhrase: "EVとして生まれ変わった新しさを感じさせ"
+        },
+        {
+          label: "落ち着いた上質感",
+          tag: "上質感",
+          title: "細部の仕上がりを見てみましょう",
+          text: "ボディのラインや内装の雰囲気を見ながら、落ち着いた上質感を感じるポイントを探してみてください。",
+          catalogPhrase: "落ち着いた上質感をまとい"
+        }
+      ]
+    },
+    {
+      id: "insight_inside",
+      question: "INSIGHTで確かめてみたいところは？",
+      choices: [
+        {
+          label: "運転席からの景色",
+          tag: "運転席",
+          title: "運転席に座ってみましょう",
+          text: "前方の見え方や操作まわりを確認しながら、日常の移動や遠出で使う場面を想像してみてください。",
+          catalogPhrase: "運転席から新しいEV体験を想像しやすく"
+        },
+        {
+          label: "室内のゆとり",
+          tag: "室内空間",
+          title: "前席と後席を見てみましょう",
+          text: "乗る人が落ち着いて過ごせそうか、座席まわりや足元の空間を確認してみてください。",
+          catalogPhrase: "乗る人が落ち着いて過ごせる室内空間を備え"
+        },
+        {
+          label: "荷室の使いやすさ",
+          tag: "荷室",
+          title: "荷物を載せる場面を想像しましょう",
+          text: "買い物や旅行を思い浮かべながら、荷室をどのように使えそうか見てみてください。",
+          catalogPhrase: "日常から遠出まで使いやすい荷室も魅力で"
+        }
+      ]
+    }
+  ],
+
+  car07: [
+    {
+      id: "cityturbo_memory",
+      question: "CITY TURBO IIを見て、どんな印象が残りますか？",
+      choices: [
+        {
+          label: "小さいのに迫力がある",
+          tag: "BULLDOG",
+          title: "BULLDOGらしい迫力を楽しみましょう",
+          text: "コンパクトなボディに詰め込まれた力強い個性を眺めながら、当時の街で出会ったときの驚きを想像してみてください。",
+          catalogPhrase: "小さなボディにBULLDOGらしい迫力を感じさせ"
+        },
+        {
+          label: "80年代らしい遊び心",
+          tag: "80年代",
+          title: "時代の空気を思い出してみましょう",
+          text: "見た瞬間に気分が上がる自由な発想を楽しみながら、当時の街や音楽、テレビの記憶をたどってみてください。",
+          catalogPhrase: "80年代らしい遊び心にあふれ"
+        },
+        {
+          label: "昔見た記憶がよみがえる",
+          tag: "懐かしさ",
+          title: "記憶の中のCITYを探してみましょう",
+          text: "街で見かけた姿、雑誌やテレビで見た印象、誰かが乗っていた記憶。思い出す風景をゆっくりたどってみてください。",
+          catalogPhrase: "当時の街の風景まで思い出させる"
+        }
+      ]
+    },
+    {
+      id: "cityturbo_superone",
+      question: "CITY TURBO IIとSuper-ONEのつながりで、気になることは？",
+      choices: [
+        {
+          label: "BULLDOGの雰囲気が今に続いている",
+          tag: "継承",
+          title: "世代を超えるBULLDOGを感じましょう",
+          text: "Super-ONEには、CITY TURBO IIの遊び心を今のEVへつなぐ発想があります。2台を頭の中で並べてみてください。",
+          catalogPhrase: "Super-ONEへ続くBULLDOGの精神を感じられる"
+        },
+        {
+          label: "BOOSTのルーツが気になる",
+          tag: "BOOST",
+          title: "昔と今のワクワク感を比べてみましょう",
+          text: "仕組みや時代が変わっても、運転する人を楽しませたいという気持ちはつながっています。",
+          catalogPhrase: "Super-ONEへつながるBOOSTの原点を感じさせ"
+        },
+        {
+          label: "昔のクルマと今のEVの違い",
+          tag: "時代比較",
+          title: "昭和と令和の楽しさを比べてみましょう",
+          text: "エンジン車とEVの違いを思い浮かべながら、どちらにも共通する遊び心を楽しんでください。",
+          catalogPhrase: "時代を超えて走る楽しさを伝えてくれる"
+        }
+      ]
+    }
+  ],
+
+  car08: [
+    {
+      id: "prelude_ba_memory",
+      question: "3代目PRELUDEから、どんな時代を思い出しますか？",
+      choices: [
+        {
+          label: "街で見かけた憧れのクーペ",
+          tag: "憧れ",
+          title: "あの頃の憧れを思い出してみましょう",
+          text: "流れるような低いシルエットを眺めながら、街で見かけたときの気持ちや、いつか乗りたいと思った記憶をたどってみてください。",
+          catalogPhrase: "街で見かけた憧れのクーペとして記憶に残り"
+        },
+        {
+          label: "ドライブやデートの思い出",
+          tag: "青春",
+          title: "あの頃のドライブを思い出してみましょう",
+          text: "友人とのドライブ、休日のお出かけ、当時よく聴いていた音楽。PRELUDEと一緒によみがえる記憶を楽しんでください。",
+          catalogPhrase: "あの頃のドライブや青春の時間を思い出させ"
+        },
+        {
+          label: "今見ても美しいデザイン",
+          tag: "デザイン",
+          title: "時代を超える美しさを眺めましょう",
+          text: "低いフロントフードと流麗なフォルムを見ながら、懐かしさだけではない魅力を探してみてください。",
+          catalogPhrase: "今見ても美しい流麗なフォルムを持つ"
+        }
+      ]
+    },
+    {
+      id: "prelude_ba_technology",
+      question: "3代目PRELUDEの魅力として、どこに惹かれますか？",
+      choices: [
+        {
+          label: "4WSという先進技術",
+          tag: "4WS",
+          title: "当時の驚きを思い出してみましょう",
+          text: "4輪操舵という新しい発想に驚いた人もいるはずです。あの頃、クルマの未来を感じた気持ちを思い出してみてください。",
+          catalogPhrase: "4WSという先進技術の驚きを備え"
+        },
+        {
+          label: "低く伸びやかなスタイル",
+          tag: "シルエット",
+          title: "PRELUDEらしい姿を眺めましょう",
+          text: "スペックより先に、見た瞬間の印象で惹かれるクルマでした。横からの姿を頭の中で思い描いてみてください。",
+          catalogPhrase: "PRELUDEらしい低く伸びやかなスタイルが印象的で"
+        },
+        {
+          label: "昔の自分に会えるような感覚",
+          tag: "記憶",
+          title: "少し昔の時間を振り返ってみましょう",
+          text: "懐かしいクルマを見ると、その頃の自分や一緒に過ごした人まで思い出すことがあります。ゆっくり記憶をたどってみてください。",
+          catalogPhrase: "昔の自分や大切な記憶まで呼び起こす"
+        }
+      ]
+    }
+  ],
+
+  car09: [
+    {
+      id: "stepwgn_memory",
+      question: "初代STEP WGNを見ると、どんな場面を思い出しますか？",
+      choices: [
+        {
+          label: "家族で出かけた休日",
+          tag: "家族旅行",
+          title: "家族で出かけた記憶をたどりましょう",
+          text: "買い物、旅行、帰省、レジャー。家族で乗った休日の風景を思い出してみてください。",
+          catalogPhrase: "家族で出かけた休日の記憶に寄り添い"
+        },
+        {
+          label: "子どもの頃に乗っていた家の車",
+          tag: "子ども時代",
+          title: "後席から見た景色を思い出してみましょう",
+          text: "子どもの頃に乗っていた家の車だった人もいるはずです。車内での会話や、窓の外の景色を思い出してみてください。",
+          catalogPhrase: "子どもの頃に乗った家の車として懐かしく"
+        },
+        {
+          label: "荷物を積んで出かけた思い出",
+          tag: "お出かけ",
+          title: "あの日のお出かけを思い出してみましょう",
+          text: "荷物を積み、家族や友人と乗り込んで出かけた場面を思い浮かべてください。",
+          catalogPhrase: "家族や荷物を乗せたお出かけの時間を思い出させ"
+        }
+      ]
+    },
+    {
+      id: "stepwgn_generation",
+      question: "初代STEP WGNから、いちばん感じることは？",
+      choices: [
+        {
+          label: "家族の思い出が詰まっている",
+          tag: "家族",
+          title: "思い出を乗せて走った車を振り返りましょう",
+          text: "クルマの記憶は、家族の記憶でもあります。写真には残っていない何気ない日常を思い出してみてください。",
+          catalogPhrase: "家族の日常の思い出をたくさん乗せ"
+        },
+        {
+          label: "シンプルで親しみやすい形",
+          tag: "初代デザイン",
+          title: "初代らしい姿を眺めましょう",
+          text: "四角くすっきりした形は、今見ても初代STEP WGNらしさがあります。暮らしのそばにいた親しみやすさを感じてみてください。",
+          catalogPhrase: "初代らしいシンプルで親しみやすい姿を持ち"
+        },
+        {
+          label: "今も続くSTEP WGNの原点",
+          tag: "原点",
+          title: "今につながる原点を感じましょう",
+          text: "家族の暮らしに寄り添う考え方が、今のSTEP WGNにもつながっています。世代を超える魅力を感じてみてください。",
+          catalogPhrase: "今に続くSTEP WGNの原点として"
+        }
+      ]
+    }
+  ]
+
 };
 
 const startScreen = document.getElementById("start-screen");
@@ -354,6 +697,8 @@ const guideCard = document.getElementById("guide-card");
 const discoveryCard = document.getElementById("discovery-card");
 const detailCard = document.getElementById("detail-card");
 const questionPanel = document.getElementById("question-panel");
+const questionPanelTitle = document.getElementById("question-panel-title");
+const questionPanelLead = document.getElementById("question-panel-lead");
 const cardsScreen = document.getElementById("cards-screen");
 const cardModal = document.getElementById("card-modal");
 const errorMessage = document.getElementById("error-message");
@@ -655,8 +1000,26 @@ function openQuestionPanel(car) {
   currentAnswers = [];
   selectedAnswer = null;
 
+  const flow = getCurrentQuestionFlow();
+
+  if (flow.length === 0) {
+    showError(`${car.name} の質問データが見つかりません。app.js の questionFlows を確認してください。`);
+    return;
+  }
+
+  hideError();
   detailCard.classList.add("hidden");
   questionPanel.classList.remove("hidden");
+
+  if (questionPanelTitle && questionPanelLead) {
+    if (car.type === "HERITAGE") {
+      questionPanelTitle.textContent = "思い出をたどってみましょう";
+      questionPanelLead.textContent = "展示車に乗り込む体験ではありません。クルマが走っていた頃の風景や、ご自身の思い出を振り返りながら選んでください。";
+    } else {
+      questionPanelTitle.textContent = "どこを見てみますか？";
+      questionPanelLead.textContent = "実車を見たり、ドアを開けたり、乗り込んだりしながら、気になる見どころを選んでください。";
+    }
+  }
 
   renderQuestion();
 }
@@ -670,14 +1033,19 @@ function renderQuestion() {
   const flow = getCurrentQuestionFlow();
   const question = flow[currentQuestionIndex];
 
-  if (!question) return;
-
-  questionProgress.textContent = `見どころ ${currentQuestionIndex + 1} / ${flow.length}`;
-  questionText.textContent = question.question;
-
   choiceOptions.innerHTML = "";
   answerBox.classList.add("hidden");
   selectedAnswer = null;
+
+  if (!question) {
+    questionProgress.textContent = "";
+    questionText.textContent = "質問データを読み込めませんでした。";
+    showError("質問データが見つかりません。app.js の questionFlows を確認してください。");
+    return;
+  }
+
+  questionProgress.textContent = `見どころ ${currentQuestionIndex + 1} / ${flow.length}`;
+  questionText.textContent = question.question;
 
   question.choices.forEach((choice) => {
     const button = document.createElement("button");
@@ -696,6 +1064,11 @@ function renderQuestion() {
 function selectChoice(choice) {
   const flow = getCurrentQuestionFlow();
   const question = flow[currentQuestionIndex];
+
+  if (!question) {
+    showError("質問データが見つかりません。app.js の questionFlows を確認してください。");
+    return;
+  }
 
   selectedAnswer = {
     questionId: question.id,
@@ -817,7 +1190,18 @@ function buildActionCopy(choice) {
     }
   };
 
-  return actionCopies[choice.label] || {
+  if (actionCopies[choice.label]) {
+    return actionCopies[choice.label];
+  }
+
+  if (currentCar?.type === "HERITAGE") {
+    return {
+      title: choice.title || "当時の記憶をたどってみましょう",
+      text: choice.text || "このクルマが走っていた頃の風景や、ご自身の思い出を振り返ってみてください。"
+    };
+  }
+
+  return {
     title: choice.title || "実車を見てみましょう",
     text: choice.text || "気になったポイントを、実際の車を見たり乗り込んだりしながら確認してみてください。"
   };
