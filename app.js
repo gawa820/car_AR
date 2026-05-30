@@ -1264,6 +1264,11 @@ function finishQuestionsAndCreateCatalog() {
   setTimeout(() => {
     renderCardCarousel();
     cardsScreen.classList.remove("hidden");
+
+    // 作成直後は、以前見ていた位置ではなく今回作成したカードを表示する。
+    window.requestAnimationFrame(() => {
+      focusCardInCarousel(card.carId);
+    });
   }, 1200);
 }
 
@@ -1389,11 +1394,26 @@ function renderCardCarousel() {
 
   visibleCards.forEach((card) => {
     const cardEl = createTradingCardElement(card);
+    cardEl.dataset.carId = card.carId;
     cardEl.addEventListener("click", () => openCardModal(card));
     cardCarousel.appendChild(cardEl);
   });
+}
 
-  renderOfficialLinks(visibleCards);
+function focusCardInCarousel(carId) {
+  if (!cardCarousel || !carId) return;
+
+  const target = [...cardCarousel.children].find(
+    (element) => element.dataset.carId === carId
+  );
+
+  if (!target) return;
+
+  target.scrollIntoView({
+    behavior: "auto",
+    block: "nearest",
+    inline: "center"
+  });
 }
 
 
@@ -1513,9 +1533,28 @@ function createTradingCardElement(card) {
 
 function openCardModal(card) {
   modalCardContent.innerHTML = "";
+
   const largeCard = createTradingCardElement(card);
   largeCard.classList.add("large-catalog-card");
   modalCardContent.appendChild(largeCard);
+
+  // 公式サイトはコレクション一覧では出さず、カードを開いた時だけ表示する。
+  const car = cars.find((item) => item.id === card.carId);
+  const officialUrl = card.officialUrl || car?.officialUrl;
+  const carName = card.carName || car?.name;
+
+  if (officialUrl && carName) {
+    const linkArea = document.createElement("div");
+    linkArea.className = "official-links modal-official-links";
+    linkArea.innerHTML = `
+      <div class="official-links-title">メーカー公式ページ</div>
+      <div class="official-link-list">
+        <a href="${escapeHtml(officialUrl)}" target="_blank" rel="noopener noreferrer">${escapeHtml(carName)} 公式サイト</a>
+      </div>
+    `;
+    modalCardContent.appendChild(linkArea);
+  }
+
   cardModal.classList.remove("hidden");
 }
 
