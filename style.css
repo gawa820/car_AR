@@ -1482,3 +1482,16 @@ a-scene {
     overflow-wrap: anywhere;
   }
 }
+
+
+/* ---------- v14: Official link only inside opened card ---------- */
+.modal-card {
+  max-height: 94vh;
+  overflow-y: auto;
+  padding-bottom: 8px;
+  -webkit-overflow-scrolling: touch;
+}
+
+.modal-official-links {
+  margin: 14px 0 2px;
+}
